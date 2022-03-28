@@ -1,5 +1,5 @@
 # Building aws platform
-![alt text](/aws-allinone/img/aws-allinone.png)
+![alt text](img/aws-allinone.png)
 
 ## structure
 ```
