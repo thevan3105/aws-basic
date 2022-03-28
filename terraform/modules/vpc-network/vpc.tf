@@ -7,8 +7,3 @@ resource "aws_vpc" "lab_vpc" {
     "name" = "${var.project}-vpc-${var.env}"
   }
 }
-
-##Data sources allow Terraform to use information defined outside of Terraform, defined by another separate Terraform configuration, or modified by functions.
-data "aws_availability_zones" "aws_availability" {
-
-}
