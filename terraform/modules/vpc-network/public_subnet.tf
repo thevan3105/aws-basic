@@ -4,18 +4,18 @@ resource "aws_subnet" "lab_subnet_public" {
   cidr_block = var.public_cidrs
 
   tags = {
-    name = "${var.project}-subnet-public-${var.env}"
+    Name = "${var.project}-subnet-public-${var.env}"
   }
 }
 resource "aws_route_table" "lab_route_public" {
-    vpc_id = aws_vpc.lab_vpc.id
-    route {
-      cidr_block = "0.0.0.0/0"
-      gateway_id = aws_internet_gateway.lab_internet_gateway.id
-    }
+  vpc_id = aws_vpc.lab_vpc.id
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.lab_internet_gateway.id
+  }
   
   tags = {
-    name = "${var.project}-route-public-${var.env}"
+    Name = "${var.project}-route-public-${var.env}"
   }
 }
 

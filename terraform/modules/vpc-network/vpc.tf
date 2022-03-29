@@ -4,6 +4,6 @@ resource "aws_vpc" "lab_vpc" {
   enable_dns_hostnames = false ## default setting
 
   tags = {
-    "name" = "${var.project}-vpc-${var.env}"
+    Name = "${var.project}-vpc-${var.env}"
   }
 }
