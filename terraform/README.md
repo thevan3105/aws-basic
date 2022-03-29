@@ -31,7 +31,8 @@
     ├── terraform.tfstate.backup
     └── variables.tf
 ```
-## How to deploy
+## How to deploy specical module
 ```
+terraform apply -target=aws_instance.ec2_example 
 ```
 
