@@ -7,3 +7,5 @@ resource "aws_vpc" "lab_vpc" {
     Name = "${var.project}-vpc-${var.env}"
   }
 }
+
+data "aws_availability_zones" "available" {}

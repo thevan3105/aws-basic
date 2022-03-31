@@ -27,6 +27,10 @@ resource "aws_security_group" "lab_sg_web_alb" {
   }
 }
 
+# data "aws_security_group" "lab_sg_web_alb" {
+#   id = var.subnet_id
+# }
+
 #3.2 web Instance
 resource "aws_security_group" "lab_sg_web_instance" {
   name        = "${var.project}-sg-ec2-web-${var.env}"

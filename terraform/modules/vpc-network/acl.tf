@@ -12,7 +12,7 @@ resource "aws_network_acl" "lab_acl_public" {
   }
 
   ingress {
-    protocol   = "tcp"
+    protocol   = "-1"
     rule_no    = 100
     action     = "allow"
     cidr_block = "0.0.0.0/0"
