@@ -21,13 +21,13 @@ resource "aws_lb_listener" "lab_alb_web_listener" {
   protocol          = "HTTP"
 
   default_action {
-    type             = "redirect"
-    
-    redirect {
-      port        = "443"
-      protocol    = "HTTPS"
-      status_code = "HTTP_301"
-    }
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.lab_alb_web_target_grp.arn
+    # redirect {
+    #   port        = "443"
+    #   protocol    = "HTTPS"
+    #   status_code = "HTTP_301"
+    # }
   }
 }
 
@@ -63,4 +63,11 @@ resource "aws_lb_target_group" "lab_alb_web_target_grp" {
     Type  = "web"
     Stage = var.env
   }
+}
+
+// Attach the target groups to the instance(s)
+resource "aws_lb_target_group_attachment" "lab_attach_tg_ec2" {
+  target_group_arn  = aws_lb_target_group.lab_alb_web_target_grp.arn
+  target_id         = aws_instance.ec2_instance.id
+  port              = 80
 }
