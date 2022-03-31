@@ -14,14 +14,15 @@ variable "profile" {
 
 #---------------NETWORK-LAYER MODULE----------
 variable "region" {
-    default = "us-east-1"
+  default = "us-east-1"
 }
 variable "vpc_cidr" {
-    default = "10.0.0.0/16"
+  default = "10.0.0.0/16"
 }
 variable "private_cidrs" {
-    default = "10.0.32.0/20"
+  default = "10.0.32.0/20"
 }
 variable "public_cidrs" {
-    default = "10.0.0.0/20"
+  # Type = "list"
+  default = ["10.0.0.0/20", "10.0.16.0/20"]
 }
