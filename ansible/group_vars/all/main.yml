@@ -1,0 +1,12 @@
+project: allinone
+os: Ubuntu
+os_version: 20.04
+
+# User ssh to server
+ansible_ssh_user: ubuntu
+# User deploy
+deploy_user: deploy
+
+# Roles/base
+base_timezone: Asia/Tokyo
+base_maxopenfile: 65535
