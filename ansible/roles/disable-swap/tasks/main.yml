@@ -1,0 +1,13 @@
+#disable swap node rke
+- name: Disable swap > for current session
+  command: swapoff -a
+  become: true
+
+#disable swap persist reboots
+- name: Disable swap permanently
+  become: true
+  replace:
+    path: /etc/fstab
+    regexp: '^(\s*)([^#\n]+\s+)(\w+\s+)swap(\s+.*)$'
+    replace: '#\1\2\3swap\4'
+    backup: yes
