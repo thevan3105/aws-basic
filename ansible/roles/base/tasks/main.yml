@@ -1,0 +1,67 @@
+# # Pre_task
+# - name: BASE > Install aptitude
+#   apt:
+#     name: aptitude
+#     state: present # =installed; ensure install
+#     #state: latest # install and update
+#   become: true
+
+# Update apt
+- name: BASE > Update apt
+  shell: sudo apt update
+  become: true
+
+- name: BASE > Install packages for instance server
+  apt:
+    name: " {{ item }}"
+    state: latest
+    update_cache: yes # equivalent of apt-get update before the operation
+  loop: 
+    - make
+    - wget
+    - unzip
+    - logrotate
+    - openssl
+    - curl
+    - vim
+    - tree
+    - git
+  become: true # run as root
+
+# Install chronyd
+- name: BASE > Install service chrony
+  apt:
+    name: chrony
+    state: present
+  become: true
+
+- name: BASE > Copy chrony.conf
+  template:
+    src: "chrony.conf.j2"
+    dest: "/etc/chrony/chrony.conf"
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+
+- name: BASE > Enable service chrony
+  service:
+    name: chrony
+    state: started
+    enabled: yes
+
+- name: BASE > Check status service chrony
+  command: systemctl status chrony
+  register: chrony_status
+- debug: var=chrony_status.stdout_lines
+
+# Set TimeZone
+- name: BASE > Set timezone to Asia/Tokyo
+  timezone:
+    name: "{{ base_timezone }}"
+  become: true
+
+- name: BASE > Check datetime on server
+  command: timedatectl
+  register: datetime_status
+- debug: var=datetime_status.stdout_lines
