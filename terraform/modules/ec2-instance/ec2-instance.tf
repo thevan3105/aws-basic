@@ -18,7 +18,7 @@ resource "aws_instance" "ec2_instance" {
   }
 
   disable_api_termination = false
-  user_data               = var.user_data
+  user_data               = templatefile("modules/ec2-instance/user_data.tftpl", { department = var.user_department, name = var.user_name })
   monitoring              = var.monitoring
 
   tags = {

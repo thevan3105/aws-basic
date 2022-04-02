@@ -20,3 +20,13 @@ variable "volume_size" { default = 8}
 variable "user_data" { default = null }
 variable "monitoring" { default = false }
 variable "sg_ec2_id" {}
+// add user_data
+variable "user_name" {
+  description = "The user creating this infrastructure"
+  default     = "terraform"
+}
+
+variable "user_department" {
+  description = "The organization the user belongs to: dev, prod, qa"
+  default     = "learn"
+}
